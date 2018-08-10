@@ -10,4 +10,3 @@ Booking Gary Jan 25 2 single 1
 Cancel Stephanie
 Booking Hussein Jan 26 1 single 1
 Print Surfers
-Print Burleigh

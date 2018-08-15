@@ -2,16 +2,24 @@ Hotel Surfers 101 2
 Hotel Surfers 102 2    
 Hotel Surfers 103 1    
 Hotel Burleigh 101 2
-Hotel Burleigh 102 3    
+Hotel Burleigh 102 2
+Hotel Burleigh 103 2
+Hotel Burleigh 104 2
+Hotel Burleigh 105 2
+Hotel Burleigh 106 2
+Hotel Burleigh 107 3    
 Booking Aarthi Jan 25 2 single 1 double 1
 Booking Daniel Feb 3 2 double 1
 Booking Rob Jan 24 4 double 1
-Booking Jack Jan 27 2 single 1
+Booking Jack Jan 27 2 double 1
 Print Surfers
 Print Burleigh
 Booking Stephanie Jan 26 1 double 1
 Change Aarthi Jan 27 3 single 1
 Booking Gary Jan 25 2 single 1
+Change Jack Feb 1 2 double 2
+Print Surfers
+Print Burleigh
 Cancel Stephanie
 Booking Hussein Jan 26 1 single 1
 Print Surfers

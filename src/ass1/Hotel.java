@@ -9,13 +9,10 @@ import java.util.Locale;
 public class Hotel {
 	private String name;
 	private ArrayList<Room> rooms;
-	private ArrayList<Booking> bookings;
-
 	
 	public Hotel(String name) {
 		this.name = name;
 		this.rooms = new ArrayList<Room>();
-		this.bookings = new ArrayList<Booking>();
 	}
 	public ArrayList<Room> getRooms() {
 		return this.rooms;
@@ -28,15 +25,7 @@ public class Hotel {
 	public void addRoom(Room room) {
 		this.rooms.add(room);
 	}
-	public ArrayList<Booking> getBookings() {
-		return bookings;
-	}
-	public void addBookings(Booking booking) {
-		this.bookings.add(booking);
-	}
-	public void removeBookings(Booking booking) {
-		this.bookings.remove(booking);
-	}
+
 
 	public ArrayList<Room> assignRooms(int nTriple,int nDouble,int nSingle,LocalDate arrivalTime,int nights){
 		ArrayList<Room> availableRooms = new ArrayList<Room>();

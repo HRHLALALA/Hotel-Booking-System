@@ -52,7 +52,6 @@ public class HotelBookingSystem {
 		for(Room room:booking.getRooms()) {
 			room.removeBooking(booking);
 		}
-		hotel.removeBookings(booking);
 		customer.setBooking(null);
 		
 	}
@@ -107,7 +106,6 @@ public class HotelBookingSystem {
 			if(availableRooms != null) {
 				Booking booking = new Booking(customer,arrivalTime,nights,h);
 				booking.setRooms(availableRooms);
-				h.addBookings(booking);
 				customer.setBooking(booking);
 				return booking;
 			}

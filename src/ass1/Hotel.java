@@ -26,6 +26,10 @@ public class Hotel {
 		this.rooms.add(room);
 	}
 
+	/*
+	 *  Find all available rooms that meet the booking requirement. 
+	 *  Return null if cannot find all rooms
+	 */
 
 	public ArrayList<Room> assignRooms(int nTriple,int nDouble,int nSingle,LocalDate arrivalTime,int nights){
 		ArrayList<Room> availableRooms = new ArrayList<Room>();

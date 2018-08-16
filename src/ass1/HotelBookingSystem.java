@@ -15,7 +15,7 @@ public class HotelBookingSystem {
 		this.customers = new ArrayList<Customer>();
 	}
 	/*
-	 * Add single rooms, double rooms and triple rooms in hotel with category
+	 * Add a room into a hotel
 	 */
 	public void addHotelRoom(String hotelName,int roomNumber,int capacity) {
 		Room newRoom = new Room(roomNumber,capacity);
@@ -24,17 +24,19 @@ public class HotelBookingSystem {
 		newRoom.setHotel(hotel);
 	}
 	/*
-	 * Create a hotel. If has this hotel, return it directly
+	 * Create a hotel into system and return its instance. If has this hotel, return it directly
 	 */
 	public Hotel createHotel(String hotelName) {
-		Hotel h = this.findHotel(hotelName);
-		if(h==null) {
-			h = new Hotel(hotelName);
-			this.hotels.add(h);
+		Hotel hotel = this.findHotel(hotelName);
+		if(hotel==null) {
+			hotel = new Hotel(hotelName);
+			this.hotels.add(hotel);
 		}
-		return h;
-		
+		return hotel;	
 	}
+	/*
+	 * Return a hotel with its name. Return null if doesn't exist
+	 */
 	public Hotel findHotel(String hotelName) {
 		for(Hotel h:this.hotels) {
 			if(hotelName.equals(h.getName()))
@@ -42,15 +44,31 @@ public class HotelBookingSystem {
 		}
 		return null;
 	}
+	/*
+	 * Add a Customer into the system. Return the customer instance 
+	 */
 	public Customer addCustomer(String name) {
+		Customer customer = this.findCustomer(name);
+		if(customer==null) {
+			customer = new Customer(name);
+			this.customers.add(customer);
+		}
+		return customer;
+	}
+	/*
+	 * find a customer with the name. Return null if not exist
+	 */
+	public Customer findCustomer(String name) {
 		for(Customer c:this.customers) {
 			if(name.equals(c.getName()))
 				return c;
 		}
-		Customer customer = new Customer(name);
-		this.customers.add(customer);
-		return customer;
+		return null;
 	}
+	/*
+	 * Cancel a customer's order. Delete all the bookings information. 
+	 * Return true if cancel successfully, otherwise false if cannot find the booking information
+	 */
 	public boolean cancelOrder(Customer customer) {
 		Booking booking = customer.getBooking();
 		if(booking == null) return false;
@@ -61,13 +79,18 @@ public class HotelBookingSystem {
 		return true;
 		
 	}
+	/*
+	 * recover the order. Add the booking into each room and customer instances
+	 */
 	public void recoverOrder(Customer c,Booking b) {
 		for(Room room: b.getRooms()) {
 			room.addBooking(b);
 		}
 		c.setBooking(b);
 	}
-	
+	/*
+	 * Convert the Month type from char to integer
+	 */
 	private int convertMonth(String month) {
 		switch (month){
 		case "Jan": return 1;
@@ -116,6 +139,9 @@ public class HotelBookingSystem {
 				break;
 		}	
 	}
+	/*
+	 * change the Order for a customer
+	 */
 	public void changeOrder(String[] cmd) {
 		Customer c = this.addCustomer(cmd[1]);
 		Booking bs = c.getBooking();
@@ -133,10 +159,12 @@ public class HotelBookingSystem {
 			}
 		}
 	}
+	/*
+	 * make a booking the all the details. Return the booking information if success otherwise null
+	 */
 	public Booking makeBooking(String name,LocalDate arrivalTime,int nights,int nSingle,int nDouble,int nTriple) {
 		Customer customer = this.addCustomer(name);
 		for (Hotel h :this.hotels) {
-			//System.out.println(h.getName());
 			ArrayList<Room> availableRooms = h.assignRooms(nTriple, nDouble, nSingle,arrivalTime,nights);
 			if(availableRooms != null) {
 				Booking booking = new Booking(customer,arrivalTime,nights,h);
@@ -147,6 +175,9 @@ public class HotelBookingSystem {
 		}
 		return null;
 	}
+	/*
+	 * Collect the booking(changing) orders including the type and the number of rooms. Then make bookings. Return the booking information. 
+	 */
 	private Booking CollectOrder(String[] cmd) {
 		String name = cmd[1];
 		int Month = this.convertMonth(cmd[2]);
@@ -174,7 +205,9 @@ public class HotelBookingSystem {
 		
 	}
 
-	
+	/*
+	 * read the files. 
+	 */
 	private ArrayList<String> readFile(String f) {
 		Scanner sc = null;
 		ArrayList<String> lines = new ArrayList<String>();
@@ -185,7 +218,7 @@ public class HotelBookingSystem {
 	    	}
 	    	
 	    }
-	    // Read input from the scanner her
+	    // Read input from the scanner
 	    catch (FileNotFoundException e){
 	    	System.out.println(e.getMessage());
 	    }
@@ -199,7 +232,6 @@ public class HotelBookingSystem {
 		HotelBookingSystem sys = new HotelBookingSystem();
 		ArrayList<String> sentences = sys.readFile(args[0]);
 		for (String s:sentences) {
-			//System.out.println(s);
 			sys.handleCommand(s);
 		}
 

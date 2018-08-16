@@ -64,6 +64,9 @@ public class Room {
 		this.sortBookings();
 
 	}
+	/*
+	 * Find if the room is available with the booking days
+	 */
 	public boolean isAvailable(LocalDate arrivalTime, int nights) {
 		LocalDate leavingDate = arrivalTime.plusDays(nights);
 		if (this.bookings.size()==0) return true;

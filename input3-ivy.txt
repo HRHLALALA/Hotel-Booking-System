@@ -1,0 +1,36 @@
+Booking Ivy Dec 10 1 double 1
+Change Ivy Nov 27 2 single 2
+Cancel Ivy
+Hotel JW 101 3
+Hotel JW 102 2
+Hotel JW 103 1
+Hotel JW 104 1
+Hotel JW 105 2
+Hotel JW 106 3
+Cancel Ivy
+Change Ivy Nov 27 2 triple 2
+Booking Ivy Dec 10 10 double 2
+Booking Coco Dec 15 10 double 1
+Cancel Ivy
+Booking Coco Dec 15 10 double 1
+Booking Ivy Jan 15 10 double 1 single 3
+Booking Ivy Jan 15 10 double 1 single 2 triple 2
+Print JW
+Cancel Ivy
+Cancel Coco
+Print JW
+Hotel HYATT 101 1
+Hotel HYATT 102 1
+Hotel HYATT 103 2
+Hotel HYATT 104 1
+Hotel HYATT 105 1
+Hotel HYATT 106 1
+Booking Coco Dec 15 10 single 3
+Change Coco Dec 15 10 single 7
+Print HYATT
+Booking a Jan 25 10 single 1
+Booking b Feb 25 10 single 1
+Booking c Nov 25 10 single 1
+Booking c Dec 1 10 single 7
+Print JW
+Print HYATT

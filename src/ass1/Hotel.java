@@ -29,30 +29,37 @@ public class Hotel {
 
 	public ArrayList<Room> assignRooms(int nTriple,int nDouble,int nSingle,LocalDate arrivalTime,int nights){
 		ArrayList<Room> availableRooms = new ArrayList<Room>();
+		//System.out.println("nSingle "+ nSingle+" nDouble "+nDouble + " nTriple "+nTriple);
 		int count1 = 0;
 		int count2 = 0;
 		int count3 = 0;
 		for(Room r:this.rooms){
 			if(r.isAvailable(arrivalTime, nights)) {
+				//System.out.println(r.getId()+" "+r.getCapacity());
 				switch(r.getCapacity()) {
+				
 				case 1: 
 					if(count1 < nSingle) {
 						availableRooms.add(r);
 						count1++;
 					}
+					break;
 				case 2: 
 					if(count2 < nDouble) {
 						availableRooms.add(r);
 						count2++;
 					}
+					break;
 				case 3:
-					if(count1 < nTriple) {
+					if(count3 < nTriple) {
 						availableRooms.add(r);
 						count3++;
 					}
+					break;
 				}
 			}
 		}
+		//System.out.println(" count1 "+count1+" count2 "+count2+" count3 "+count3);
 		if(count1!=nSingle || count2!=nDouble || count3 != nTriple) return null;
 		return availableRooms;
 	}

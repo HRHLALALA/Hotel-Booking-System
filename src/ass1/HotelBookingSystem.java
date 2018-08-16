@@ -27,14 +27,20 @@ public class HotelBookingSystem {
 	 * Create a hotel. If has this hotel, return it directly
 	 */
 	public Hotel createHotel(String hotelName) {
+		Hotel h = this.findHotel(hotelName);
+		if(h==null) {
+			h = new Hotel(hotelName);
+			this.hotels.add(h);
+		}
+		return h;
+		
+	}
+	public Hotel findHotel(String hotelName) {
 		for(Hotel h:this.hotels) {
 			if(hotelName.equals(h.getName()))
 				return h;
 		}
-		Hotel hotel = new Hotel(hotelName);
-		this.hotels.add(hotel);
-		return hotel;
-		
+		return null;
 	}
 	public Customer addCustomer(String name) {
 		for(Customer c:this.customers) {
@@ -45,18 +51,24 @@ public class HotelBookingSystem {
 		this.customers.add(customer);
 		return customer;
 	}
-	public void cancelOrder(String customerName) {
-		Customer customer = this.addCustomer(customerName);
+	public boolean cancelOrder(Customer customer) {
 		Booking booking = customer.getBooking();
-		Hotel hotel = booking.getHotel();
+		if(booking == null) return false;
 		for(Room room:booking.getRooms()) {
 			room.removeBooking(booking);
 		}
 		customer.setBooking(null);
+		return true;
 		
 	}
+	public void recoverOrder(Customer c,Booking b) {
+		for(Room room: b.getRooms()) {
+			room.addBooking(b);
+		}
+		c.setBooking(b);
+	}
 	
-	public int convertMonth(String month) {
+	private int convertMonth(String month) {
 		switch (month){
 		case "Jan": return 1;
 		case "Feb": return 2;
@@ -84,24 +96,47 @@ public class HotelBookingSystem {
 				this.addHotelRoom(cmd[1], Integer.parseInt(cmd[2]), Integer.parseInt(cmd[3]));
 				break;
 			case "Booking":
-				this.CollectOrder(cmd);
+				Booking booking =this.CollectOrder(cmd);
+				if(booking ==null) System.out.println(cmd[0]+" rejected");
+				else System.out.println(cmd[0]+" "+ booking.toString());
 				break;
 			case "Change":
-				this.cancelOrder(cmd[1]);
-				this.CollectOrder(cmd);
+				this.changeOrder(cmd);
 				break;
 			case "Cancel":
-				this.cancelOrder(cmd[1]);
-				System.out.println(cmd[0]+" "+cmd[1]);
+				if(this.cancelOrder(this.addCustomer(cmd[1])))
+					System.out.println(cmd[0]+" "+cmd[1]);
+				else 
+					System.out.println(cmd[0]+" rejected");
+				break;
 			case "Print":
-				Hotel hotel = this.createHotel(cmd[1]);
-				hotel.displayBooking();
-				
+				Hotel hotel = this.findHotel(cmd[1]);
+				if(hotel!=null) 
+					hotel.displayBooking();
+				break;
 		}	
+	}
+	public void changeOrder(String[] cmd) {
+		Customer c = this.addCustomer(cmd[1]);
+		Booking bs = c.getBooking();
+		if(!this.cancelOrder(c)) {
+			System.out.println(cmd[0]+" rejected");
+		}
+		else{
+			Booking booking = this.CollectOrder(cmd);
+			if(booking==null) {
+				this.recoverOrder(c, bs);
+				System.out.println(cmd[0]+" rejected");
+			}
+			else {
+				System.out.println(cmd[0]+" "+ booking.toString());
+			}
+		}
 	}
 	public Booking makeBooking(String name,LocalDate arrivalTime,int nights,int nSingle,int nDouble,int nTriple) {
 		Customer customer = this.addCustomer(name);
 		for (Hotel h :this.hotels) {
+			//System.out.println(h.getName());
 			ArrayList<Room> availableRooms = h.assignRooms(nTriple, nDouble, nSingle,arrivalTime,nights);
 			if(availableRooms != null) {
 				Booking booking = new Booking(customer,arrivalTime,nights,h);
@@ -112,7 +147,7 @@ public class HotelBookingSystem {
 		}
 		return null;
 	}
-	private void CollectOrder(String[] cmd) {
+	private Booking CollectOrder(String[] cmd) {
 		String name = cmd[1];
 		int Month = this.convertMonth(cmd[2]);
 		int day = Integer.parseInt(cmd[3]);
@@ -134,8 +169,8 @@ public class HotelBookingSystem {
 			}	
 		}
 		Booking booking = this.makeBooking(name,arrivalTime,nights,nSingle,nDouble,nTriple);
-		if (booking == null) System.out.println(cmd[0]+" rejected");
-		else System.out.println(cmd[0]+" "+ booking.toString());
+		if (booking == null) return null;
+		else return booking;
 		
 	}
 

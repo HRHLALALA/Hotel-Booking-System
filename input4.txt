@@ -1,0 +1,53 @@
+# no hotel situation
+Booking Daniel Mar 10 3 double 2
+Change Daniel Apr 20 2 double 2
+Cancel Daniel
+
+# hotel unavailable situation
+Hotel Jackos 201 2
+Hotel Milkos 201 2
+Hotel Milkjam 201 2
+
+Booking Daniel Mar 10 3 double 2
+Change Daniel Apr 20 2 double 2
+Cancel Daniel
+
+#hotel part available situation
+Hotel Jackos 202 2
+Hotel Milkos 202 2
+Hotel Milkjam 302 3
+
+Booking Daniel Mar 10 3 double 2
+Change Daniel Apr 20 2 triple 2
+Print Jackos
+Print Milkos
+Print Milkjam
+#reset
+Cancel Daniel
+
+# booking order test
+Booking Daniel Mar 10 3 triple 1
+Booking Simon Mar 13 3 triple 1
+Booking Jerry Mar 12 3 triple 1
+
+Hotel Jackos 303 3
+Booking Jerry Mar 12 3 triple 1
+
+Print Jackos
+Print Milkos
+Print Milkjam
+
+# cancel test
+Cancel Daniel
+Print Jackos
+Print Milkos
+Print Milkjam
+
+#date order test
+Booking Daniel Mar 10 3 triple 1
+Change Jerry Mar 20 3 triple 1
+Booking Mike Mar 13 6 triple 1
+Booking Cherry Mar 19 1 triple 1
+Print Jackos
+Print Milkos
+Print Milkjam

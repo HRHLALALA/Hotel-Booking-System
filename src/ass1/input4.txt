@@ -51,3 +51,17 @@ Booking Cherry Mar 19 1 triple 1
 Print Jackos
 Print Milkos
 Print Milkjam
+
+Cancel Daniel
+Cancel Mike
+Cancel Cherry
+
+#check order of booking and multiple orders
+Hotel Jackos 103 1
+Hotel Jackos 104 1
+Hotel Jackos 105 1
+Hotel Jackos 204 2
+
+Booking Daniel Apr 10 3 single 3 double 2 triple 1
+Change Daniel Apr 10 3 single 3 double 2 triple 1
+Print Jackos

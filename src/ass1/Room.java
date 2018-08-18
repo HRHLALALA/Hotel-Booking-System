@@ -15,27 +15,42 @@ public class Room {
 		this.capacity = capacity;
 		this.bookings = new ArrayList<Booking>();
 	}
+	/**
+	 * @return the hotel information
+	 */
 	public Hotel getHotel() {
 		return this.hotel;
 	}
-
+	/**
+	 * @return id of the room
+	 */
 
 	public int getId() {
 		return id;
 	}
-
+	/**
+	 * @param hotel which contains this room
+	 */
 	public void setHotel(Hotel hotel) {
 		this.hotel = hotel;
-		
 	}
+	/**
+	 * @return The capacity of the room
+	 */
 	public int getCapacity() {
 		return capacity;
 	}
-	
+	/**
+	 * @return list of bookings
+	 */
 	public ArrayList<Booking> getBookings() {
 		return bookings;
 	}
-	
+	/**
+	 * help function to find the index of the min arrival date from the flag index
+	 * @param flag start from which index
+	 * @return the index of min arrival time
+	 */
 	private int findMin(int flag) { //find the index of Stock array with min price from the flag position
 		int min =flag;
 		for(int i=flag+1;i<this.bookings.size();i++){
@@ -45,7 +60,9 @@ public class Room {
 		}
 		return min;
 	}
-	
+	/**
+	 * a help function for sorting the order of the booking with available time
+	 */
 	private void sortBookings() { // selectionSort for Stock
 		for(int flag=0;flag<this.bookings.size();flag++) {
 			int min = findMin(flag);
@@ -58,14 +75,17 @@ public class Room {
 			this.bookings.add(flag,swap);
 		}
 	}
-	
+	/**
+	 * @param booking booking information
+	 */
 	public void addBooking(Booking booking) {
 		this.bookings.add(booking);
 		this.sortBookings();
 
 	}
-	/*
+	/**
 	 * Find if the room is available with the booking days
+	 * @return true if is available, otherwise false
 	 */
 	public boolean isAvailable(LocalDate arrivalTime, int nights) {
 		LocalDate leavingDate = arrivalTime.plusDays(nights);
@@ -89,10 +109,18 @@ public class Room {
 		}
 		return false;
 	}
+	/**
+	 *  remove a booking
+	 * @param booking the booking information
+	 */
 	public void removeBooking(Booking booking) {
 		this.bookings.remove(booking);
 	}
-
+	/**
+	 * convert the month from integer to string
+	 * @param month integer month
+	 * @return string month
+	 */
 	private String convertMonth(int month) {
 		switch (month){
 		case 1: return "Jan";

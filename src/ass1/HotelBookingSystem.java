@@ -5,7 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * The central hotel booking system
+ * @author Renhao Huang
+ */
 public class HotelBookingSystem {
 	private ArrayList<Hotel> hotels;
 	private ArrayList<Customer> customers;
@@ -14,8 +17,12 @@ public class HotelBookingSystem {
 		this.hotels = new ArrayList<Hotel>();
 		this.customers = new ArrayList<Customer>();
 	}
-	/*
+	/**
 	 * Add a room into a hotel
+	 * @param hotelName The hotel name
+	 * @param roomNumber The room number
+	 * @param capacity The capacity of the room 
+	 * @return Nothing
 	 */
 	public void addHotelRoom(String hotelName,int roomNumber,int capacity) {
 		Room newRoom = new Room(roomNumber,capacity);
@@ -23,8 +30,10 @@ public class HotelBookingSystem {
 		hotel.addRoom(newRoom);
 		newRoom.setHotel(hotel);
 	}
-	/*
-	 * Create a hotel into system and return its instance. If has this hotel, return it directly
+	/**
+	 * Create a hotel into system
+	 * @param hotelName The name of the hotel
+	 * @return Return the hotel instance
 	 */
 	public Hotel createHotel(String hotelName) {
 		Hotel hotel = this.findHotel(hotelName);
@@ -34,8 +43,11 @@ public class HotelBookingSystem {
 		}
 		return hotel;	
 	}
-	/*
-	 * Return a hotel with its name. Return null if doesn't exist
+	/**
+	 * Search a hotel in System
+	 * @param hotelName The name of the hotel
+	 * @return The hotel.
+	 * @return null if cannot find
 	 */
 	public Hotel findHotel(String hotelName) {
 		for(Hotel h:this.hotels) {
@@ -44,8 +56,9 @@ public class HotelBookingSystem {
 		}
 		return null;
 	}
-	/*
-	 * Add a Customer into the system. Return the customer instance 
+	/**
+	 * Add a Customer into the system. 
+	 * @return the customer instance 
 	 */
 	public Customer addCustomer(String name) {
 		Customer customer = this.findCustomer(name);
@@ -55,8 +68,11 @@ public class HotelBookingSystem {
 		}
 		return customer;
 	}
-	/*
-	 * find a customer with the name. Return null if not exist
+	/**
+	 * find a customer with the name. 
+	 * @param name Name of the customer
+	 * @return the customer instance.
+	 * @return null if not exist
 	 */
 	public Customer findCustomer(String name) {
 		for(Customer c:this.customers) {
@@ -65,9 +81,11 @@ public class HotelBookingSystem {
 		}
 		return null;
 	}
-	/*
-	 * Cancel a customer's order. Delete all the bookings information. 
-	 * Return true if cancel successfully, otherwise false if cannot find the booking information
+	/**
+	 * Cancel a customer's order. 
+	 * Delete all the bookings information. 
+	 * @return true if cancel successfully 
+	 * @return false if cannot find the booking information
 	 */
 	public boolean cancelOrder(Customer customer) {
 		Booking booking = customer.getBooking();
@@ -79,8 +97,10 @@ public class HotelBookingSystem {
 		return true;
 		
 	}
-	/*
+	/**
 	 * recover the order. Add the booking into each room and customer instances
+	 * @param c the customer information
+	 * @param b the booking information
 	 */
 	public void recoverOrder(Customer c,Booking b) {
 		for(Room room: b.getRooms()) {
@@ -88,8 +108,10 @@ public class HotelBookingSystem {
 		}
 		c.setBooking(b);
 	}
-	/*
+	/**
 	 * Convert the Month type from char to integer
+	 * @param month The String month
+	 * @return the integer month
 	 */
 	private int convertMonth(String month) {
 		switch (month){
@@ -109,8 +131,10 @@ public class HotelBookingSystem {
 		return 0;
 	}
 	
-	/*
-	 * Split the command string and handle it with its command
+	/**
+	 * Split the command string
+	 * handle it with its command
+	 * @param sentence of the command
 	 */
 	private void handleCommand(String sentence) {
 		String[] cmd = sentence.split(" ");
@@ -139,8 +163,9 @@ public class HotelBookingSystem {
 				break;
 		}	
 	}
-	/*
+	/**
 	 * change the Order for a customer
+	 * @param cmd the splited command
 	 */
 	public void changeOrder(String[] cmd) {
 		Customer c = this.addCustomer(cmd[1]);
@@ -159,8 +184,10 @@ public class HotelBookingSystem {
 			}
 		}
 	}
-	/*
-	 * make a booking the all the details. Return the booking information if success otherwise null
+	/**
+	 * make a booking the all the details. 
+	 * @return the booking information if success 
+	 * @return null otherwise
 	 */
 	public Booking makeBooking(String name,LocalDate arrivalTime,int nights,int nSingle,int nDouble,int nTriple) {
 		Customer customer = this.addCustomer(name);
@@ -175,8 +202,10 @@ public class HotelBookingSystem {
 		}
 		return null;
 	}
-	/*
-	 * Collect the booking(changing) orders including the type and the number of rooms. Then make bookings. Return the booking information. 
+	/**
+	 * Collect the booking(changing) orders including the type and the number of rooms.
+	 * Then make bookings. 
+	 * @return the booking information. 
 	 */
 	private Booking CollectOrder(String[] cmd) {
 		String name = cmd[1];
@@ -205,8 +234,10 @@ public class HotelBookingSystem {
 		
 	}
 
-	/*
-	 * read the files. 
+	/**
+	 * Read the file
+	 * @param f the files. 
+	 * @return each command line
 	 */
 	private ArrayList<String> readFile(String f) {
 		Scanner sc = null;

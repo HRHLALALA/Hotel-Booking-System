@@ -1,26 +1,52 @@
-Hotel Surfers 101 2 
-Hotel Surfers 102 2    
-Hotel Surfers 103 1    
+#multiple people and multiple commands test
+
+Hotel Surfers 101 2
+	# Hotel Surfers has room 101 with capacity 2 ("double" room)
+Hotel Surfers 102 2
+	# Hotel Surfers has room 102 with capacity 2 ("double" room)    
+Hotel Surfers 103 1
+	# Hotel Surfers has room 103 with capacity 1 ("single" room)
 Hotel Burleigh 101 2
+	# Hotel Burleigh has room 101 with capacity 2 ("double" room)
 Hotel Burleigh 102 2
+	# Hotel Burleigh has room 102 with capacity 2 ("double" room)
 Hotel Burleigh 103 2
+	# Hotel Burleigh has room 103 with capacity 2 ("double" room)
 Hotel Burleigh 104 2
+	# Hotel Burleigh has room 104 with capacity 2 ("double" room)
 Hotel Burleigh 105 2
+	# Hotel Burleigh has room 105 with capacity 2 ("double" room)
 Hotel Burleigh 106 2
-Hotel Burleigh 107 3    
+	# Hotel Burleigh has room 106 with capacity 2 ("double" room)
+Hotel Burleigh 107 3
+ 	# Hotel Burleigh has room 107 with capacity 3 ("triple" room)   
 Booking Aarthi Jan 25 2 single 1 double 1
+	# Aarthi's booking request is for 1 single and 1 double room starting on Jan 25 for 2 nights
+	# Assign rooms 101 and 103 of Hotel Surfers (output Booking Aarthi Surfers 101 103)
 Booking Daniel Feb 3 2 double 1
+	# Daniel's booking request is for 1 double room starting on Feb 2 for 2 nights
+	# Assign rooms 101 Hotel Surfers (output Booking Daniel Surfers 101)
 Booking Rob Jan 24 4 double 1
+	# Rob's booking request is for 1 double room starting on Jan 24 for 4 nights
+        # Assign rooms 102 of Hotel Surfers (output Booking Rob Surfers 102)
 Booking Jack Jan 27 2 double 1
+	# Jack's booking request is for 1 double room starting on Jan 27 for 2 nights
+        # Assign rooms 101 of Hotel Surfers (output Booking Jack Surfers 101)
 Print Surfers
+	# Print out occupancy of all rooms at Hotel Surfers, in order of room 
 Print Burleigh
+	# Print out occupancy of all rooms at Hotel Burleigh, in order of room 
 Booking Stephanie Jan 26 1 double 1
 Change Aarthi Jan 27 3 single 1
 Booking Gary Jan 25 2 single 1
 Change Jack Feb 1 2 double 2
 Print Surfers
+	# Print out occupancy of all rooms at Hotel Surfers, in order of room 
 Print Burleigh
+	# Print out occupancy of all rooms at Hotel Burleigh, in order of room 
 Cancel Stephanie
 Booking Hussein Jan 26 1 single 1
 Print Surfers
+	# Print out occupancy of all rooms at Hotel Surfers, in order of room 
 Print Burleigh
+	# Print out occupancy of all rooms at Hotel Burleigh, in order of room 

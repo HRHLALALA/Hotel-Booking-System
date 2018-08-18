@@ -1,0 +1,20 @@
+# test booking between two months and booking order
+Hotel Jackos 103 1
+Hotel Jackos 307 3
+Hotel Jackos 209 2
+Hotel Jackos 104 1
+Hotel Jackos 105 1
+Hotel Jackos 204 2
+Hotel Jackos 205 2
+Hotel Jackos 305 3
+Hotel Jackos 208 2
+Hotel Jackos 206 2
+Hotel Jackos 207 2
+Hotel Jackos 304 3
+Hotel Jackos 306 3
+Booking Daniel Mar 10 3 double 2 triple 2 single 3
+Change Daniel Apr 27 9 single 2 double 3 triple 3
+Booking Jack May 5 3 single 2 double 2 triple 3
+Cancel Jack
+Booking Jack May 6 3 single 2 double 2 triple 3
+Print Jackos

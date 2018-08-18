@@ -14,32 +14,37 @@ public class Hotel {
 		this.name = name;
 		this.rooms = new ArrayList<Room>();
 	}
+	/**
+	 * @return all the rooms in the hotel
+	 */
 	public ArrayList<Room> getRooms() {
 		return this.rooms;
 	}
-
+	/**
+	 * @return the hotel name
+	 */
 	public String getName() {
 		return this.name;
 	}
-
+	/**
+	 * @param room a room
+	 */
 	public void addRoom(Room room) {
 		this.rooms.add(room);
 	}
 
-	/*
+	/**
 	 *  Find all available rooms that meet the booking requirement. 
-	 *  Return null if cannot find all rooms
+	 *  @return available rooms, null if cannot find all rooms
 	 */
 
 	public ArrayList<Room> assignRooms(int nTriple,int nDouble,int nSingle,LocalDate arrivalTime,int nights){
 		ArrayList<Room> availableRooms = new ArrayList<Room>();
-		//System.out.println("nSingle "+ nSingle+" nDouble "+nDouble + " nTriple "+nTriple);
 		int count1 = 0;
 		int count2 = 0;
 		int count3 = 0;
 		for(Room r:this.rooms){
 			if(r.isAvailable(arrivalTime, nights)) {
-				//System.out.println(r.getId()+" "+r.getCapacity());
 				switch(r.getCapacity()) {
 				
 				case 1: 
@@ -63,12 +68,13 @@ public class Hotel {
 				}
 			}
 		}
-		//System.out.println(" count1 "+count1+" count2 "+count2+" count3 "+count3);
 		if(count1!=nSingle || count2!=nDouble || count3 != nTriple) return null;
 		return availableRooms;
 	}
 
-
+	/**
+	 * display all the booking information of each room
+	 */
 	public void displayBooking() {
 		for(Room r:this.rooms) {
 			System.out.println(r.toString());

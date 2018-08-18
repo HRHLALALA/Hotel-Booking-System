@@ -16,34 +16,51 @@ public class Booking {
 		this.rooms = new ArrayList<Room>();getClass();
 		this.hotel = hotel;
 	}
-
+	/**
+	 * @return customer information
+	 */
 	public Customer getCustomer() {
 		return customer;
 	}
-
+	/**
+	 * @return arrival date
+	 */
 
 	public LocalDate getArrivalTime() {
 		return arrivalTime;
 	}
+	/**
+	 * Calculate the leave date
+	 * @return the leave date
+	 */
 	public  LocalDate getLeaveTime() {
 		return arrivalTime.plusDays(nights);
 	}
-	
+	/**
+	 * @return number of nights
+	 */
 	public int getNights() {
 		return nights;
 	}
-
+	/**
+	 * @return all rooms
+	 */
 	public ArrayList<Room> getRooms() {
 		return rooms;
 	}
-
+	/**
+	 * put all booked rooms into booking
+	 * @param rooms
+	 */
 	public void setRooms(ArrayList<Room> rooms) {
 		for(Room r:rooms) {
 			r.addBooking(this);
 		}
 		this.rooms = rooms;
 	}
-
+	/**
+	 * @return hotel information
+	 */
 	public Hotel getHotel() {
 		return hotel;
 	}
